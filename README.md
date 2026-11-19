@@ -1,0 +1,22 @@
+# Robust sparse smooth PCA on ORL faces
+
+This project implements RSSPCA from Wang et al. (2025) and compares it with PCA, PCA-L1, and robust sparse PCA (RSPCA) using Euclidean 1-nearest-neighbor classification. The experiment uses shared ORL train/test splits and selects penalties within each training set. [RSSPCA paper](https://doi.org/10.1371/journal.pone.0323281)
+
+## Reproduce the experiment
+
+Run these commands from the repository root. The project was tested in the `ptrc-hw03` Conda environment with Python 3.14.10. The dependency versions are listed in `requirements.txt`.
+
+```zsh
+conda activate ptrc-hw03
+mkdir -p data
+curl --fail --location \
+  https://raw.githubusercontent.com/yuzhounh/RSSPCA/main/data/ORL.mat \
+  --output data/ORL.mat
+shasum -a 256 data/ORL.mat
+python -m unittest discover -s tests -v
+python experiment.py
+```
+
+The expected SHA-256 of `ORL.mat` is `f59adc3a173cca9685cafc13645f6af4e05e62a16190049c63ebedfeeece1fcd`. The authors’ matrix holds 400 grayscale images resized to 56 × 46 pixels, with ten images for each of 40 subjects. The dataset stays local in `data/`. [Authors’ ORL matrix](https://github.com/yuzhounh/RSSPCA/blob/main/data/ORL.mat) · [Benchmark data record](https://doi.org/10.6084/m9.figshare.27643026)
+
+The command writes per-split scores, candidate validation scores, selected penalties, convergence diagnostics, and aggregate statistics to `results/results.json`. It also writes `results/accuracy.png`. Use `--output PATH` to run alongside the checked-in results or `--data PATH` to use an existing copy of the matrix.
