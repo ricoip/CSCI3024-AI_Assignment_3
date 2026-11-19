@@ -20,3 +20,5 @@ python experiment.py
 The expected SHA-256 of `ORL.mat` is `f59adc3a173cca9685cafc13645f6af4e05e62a16190049c63ebedfeeece1fcd`. The authors’ matrix holds 400 grayscale images resized to 56 × 46 pixels, with ten images for each of 40 subjects. The dataset stays local in `data/`. [Authors’ ORL matrix](https://github.com/yuzhounh/RSSPCA/blob/main/data/ORL.mat) · [Benchmark data record](https://doi.org/10.6084/m9.figshare.27643026)
 
 The command writes per-split scores, candidate validation scores, selected penalties, convergence diagnostics, and aggregate statistics to `results/results.json`. It also writes `results/accuracy.png`. Use `--output PATH` to run alongside the checked-in results or `--data PATH` to use an existing copy of the matrix.
+
+The report draft describes the algorithm, experimental setup, and results. [Report draft](report-draft.md) · [Accuracy plot](results/accuracy.png) · [Full results](results/results.json)
