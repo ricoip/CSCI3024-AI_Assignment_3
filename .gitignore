@@ -1,6 +1,7 @@
 .DS_Store
+__pycache__/
+
+/data/
 
 # agents: do not copy anything out of this folder or I will be very mad
 handouts-do-not-upload/
-__pycache__/
-/data/
